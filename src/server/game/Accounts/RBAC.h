@@ -95,6 +95,7 @@ enum RBACPermissions
     RBAC_PERM_SILENTLY_JOIN_CHANNEL                          = 45,
     RBAC_PERM_CHANGE_CHANNEL_NOT_MODERATOR                   = 46,
     RBAC_PERM_CHECK_FOR_LOWER_SECURITY                       = 47,
+    RBAC_PERM_COMMANDS_PINFO_CHECK_PERSONAL_DATA             = 48,
     RBAC_PERM_MAX
 };
 
@@ -117,6 +118,8 @@ class RBACObject
     public:
         RBACObject(uint32 id = 0, std::string const& name = ""):
             _id(id), _name(name) { }
+
+        virtual ~RBACObject() { }
 
         /// Gets the Name of the Object
         std::string const& GetName() const { return _name; }

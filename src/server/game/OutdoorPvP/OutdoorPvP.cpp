@@ -441,7 +441,7 @@ void OutdoorPvP::HandleKill(Player* killer, Unit* killed)
     {
         for (GroupReference* itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
         {
-            Player* groupGuy = itr->getSource();
+            Player* groupGuy = itr->GetSource();
 
             if (!groupGuy)
                 continue;
@@ -453,18 +453,14 @@ void OutdoorPvP::HandleKill(Player* killer, Unit* killed)
             // creature kills must be notified, even if not inside objective / not outdoor pvp active
             // player kills only count if active and inside objective
             if ((groupGuy->IsOutdoorPvPActive() && IsInsideObjective(groupGuy)) || killed->GetTypeId() == TYPEID_UNIT)
-            {
                 HandleKillImpl(groupGuy, killed);
-            }
         }
     }
     else
     {
         // creature kills must be notified, even if not inside objective / not outdoor pvp active
-        if (killer && ((killer->IsOutdoorPvPActive() && IsInsideObjective(killer)) || killed->GetTypeId() == TYPEID_UNIT))
-        {
+        if ((killer->IsOutdoorPvPActive() && IsInsideObjective(killer)) || killed->GetTypeId() == TYPEID_UNIT)
             HandleKillImpl(killer, killed);
-        }
     }
 }
 

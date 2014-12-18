@@ -18,7 +18,7 @@ class Mod_BattlegroundHistory_WorldScript : public WorldScript
 
     void OnConfigLoad(bool /*reload*/)
     {
-        BGHistoryEnable = ConfigMgr::GetBoolDefault("BattlegroundHistory.Enable", false);
+        BGHistoryEnable = sConfigMgr->GetBoolDefault("BattlegroundHistory.Enable", false);
     }
 };
 

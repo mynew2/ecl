@@ -31,7 +31,7 @@ class achievement_resilient_victory : public AchievementCriteriaScript
     public:
         achievement_resilient_victory() : AchievementCriteriaScript("achievement_resilient_victory") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             Battleground* bg = source->GetBattleground();
             if (!bg)
@@ -40,7 +40,7 @@ class achievement_resilient_victory : public AchievementCriteriaScript
             if (bg->GetTypeID(true) != BATTLEGROUND_AB)
                 return false;
 
-            if (!static_cast<BattlegroundAB*>(bg)->IsTeamScores500Disadvantage(source->GetTeam()))
+            if (!bg->ToBattlegroundAB()->IsTeamScores500Disadvantage(source->GetTeam()))
                 return false;
 
             return true;
@@ -52,7 +52,7 @@ class achievement_bg_control_all_nodes : public AchievementCriteriaScript
     public:
         achievement_bg_control_all_nodes() : AchievementCriteriaScript("achievement_bg_control_all_nodes") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             Battleground* bg = source->GetBattleground();
             if (!bg)
@@ -70,7 +70,7 @@ class achievement_save_the_day : public AchievementCriteriaScript
     public:
         achievement_save_the_day() : AchievementCriteriaScript("achievement_save_the_day") { }
 
-        bool OnCheck(Player* source, Unit* target)
+        bool OnCheck(Player* source, Unit* target) OVERRIDE
         {
             if (!target)
                 return false;
@@ -84,7 +84,7 @@ class achievement_save_the_day : public AchievementCriteriaScript
                 if (bg->GetTypeID(true) != BATTLEGROUND_WS)
                     return false;
 
-                if (static_cast<BattlegroundWS*>(bg)->GetFlagState(player->GetTeam()) == BG_WS_FLAG_STATE_ON_BASE)
+                if (bg->ToBattlegroundWS()->GetFlagState(player->GetTeam()) == BG_WS_FLAG_STATE_ON_BASE)
                     return true;
             }
             return false;
@@ -96,7 +96,7 @@ class achievement_bg_ic_resource_glut : public AchievementCriteriaScript
     public:
         achievement_bg_ic_resource_glut() : AchievementCriteriaScript("achievement_bg_ic_resource_glut") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             if (source->HasAura(SPELL_OIL_REFINERY) && source->HasAura(SPELL_QUARRY))
                 return true;
@@ -110,7 +110,7 @@ class achievement_bg_ic_glaive_grave : public AchievementCriteriaScript
     public:
         achievement_bg_ic_glaive_grave() : AchievementCriteriaScript("achievement_bg_ic_glaive_grave") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             if (Creature* vehicle = source->GetVehicleCreatureBase())
             {
@@ -127,7 +127,7 @@ class achievement_bg_ic_mowed_down : public AchievementCriteriaScript
     public:
         achievement_bg_ic_mowed_down() : AchievementCriteriaScript("achievement_bg_ic_mowed_down") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             if (Creature* vehicle = source->GetVehicleCreatureBase())
             {
@@ -144,7 +144,7 @@ class achievement_bg_sa_artillery : public AchievementCriteriaScript
     public:
         achievement_bg_sa_artillery() : AchievementCriteriaScript("achievement_bg_sa_artillery") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             if (Creature* vehicle = source->GetVehicleCreatureBase())
             {
@@ -164,7 +164,7 @@ class achievement_arena_kills : public AchievementCriteriaScript
         {
         }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             // this checks GetBattleground() for NULL already
             if (!source->InArena())
@@ -182,7 +182,7 @@ class achievement_sickly_gazelle : public AchievementCriteriaScript
 public:
     achievement_sickly_gazelle() : AchievementCriteriaScript("achievement_sickly_gazelle") { }
 
-    bool OnCheck(Player* /*source*/, Unit* target)
+    bool OnCheck(Player* /*source*/, Unit* target) OVERRIDE
     {
         if (!target)
             return false;
@@ -200,7 +200,7 @@ class achievement_everything_counts : public AchievementCriteriaScript
     public:
         achievement_everything_counts() : AchievementCriteriaScript("achievement_everything_counts") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             Battleground* bg = source->GetBattleground();
             if (!bg)
@@ -209,7 +209,7 @@ class achievement_everything_counts : public AchievementCriteriaScript
             if (bg->GetTypeID(true) != BATTLEGROUND_AV)
                 return false;
 
-            if (static_cast<BattlegroundAV*>(bg)->IsBothMinesControlledByTeam(source->GetTeam()))
+            if (bg->ToBattlegroundAV()->IsBothMinesControlledByTeam(source->GetTeam()))
                 return true;
 
             return false;
@@ -221,7 +221,7 @@ class achievement_bg_av_perfection : public AchievementCriteriaScript
     public:
         achievement_bg_av_perfection() : AchievementCriteriaScript("achievement_bg_av_perfection") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             Battleground* bg = source->GetBattleground();
             if (!bg)
@@ -230,7 +230,7 @@ class achievement_bg_av_perfection : public AchievementCriteriaScript
             if (bg->GetTypeID(true) != BATTLEGROUND_AV)
                 return false;
 
-            if (static_cast<BattlegroundAV*>(bg)->IsAllTowersControlledAndCaptainAlive(source->GetTeam()))
+            if (bg->ToBattlegroundAV()->IsAllTowersControlledAndCaptainAlive(source->GetTeam()))
                 return true;
 
             return false;
@@ -244,7 +244,7 @@ class achievement_bg_sa_defense_of_ancients : public AchievementCriteriaScript
         {
         }
 
-        bool OnCheck(Player* player, Unit* /*target*/)
+        bool OnCheck(Player* player, Unit* /*target*/) OVERRIDE
         {
             if (!player)
                 return false;
@@ -253,10 +253,10 @@ class achievement_bg_sa_defense_of_ancients : public AchievementCriteriaScript
             if (!battleground)
                 return false;
 
-            if (player->GetTeamId() == static_cast<BattlegroundSA*>(battleground)->Attackers)
+            if (player->GetTeamId() == battleground->ToBattlegroundSA()->Attackers)
                 return false;
 
-            if (!static_cast<BattlegroundSA*>(battleground)->gateDestroyed)
+            if (!battleground->ToBattlegroundSA()->gateDestroyed)
                 return true;
 
             return false;
@@ -278,7 +278,7 @@ class achievement_tilted : public AchievementCriteriaScript
     public:
         achievement_tilted() : AchievementCriteriaScript("achievement_tilted") {}
 
-        bool OnCheck(Player* player, Unit* /*target*/)
+        bool OnCheck(Player* player, Unit* /*target*/) OVERRIDE
         {
             if (!player)
                 return false;
@@ -299,7 +299,7 @@ class achievement_not_even_a_scratch : public AchievementCriteriaScript
     public:
         achievement_not_even_a_scratch() : AchievementCriteriaScript("achievement_not_even_a_scratch") { }
 
-        bool OnCheck(Player* source, Unit* /*target*/)
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
         {
             if (!source)
                 return false;
@@ -308,7 +308,7 @@ class achievement_not_even_a_scratch : public AchievementCriteriaScript
             if (!battleground)
                 return false;
 
-            if (static_cast<BattlegroundSA*>(battleground)->notEvenAScratch(source->GetTeam()))
+            if (battleground->ToBattlegroundSA()->notEvenAScratch(source->GetTeam()))
                 return true;
 
             return false;
@@ -348,7 +348,7 @@ class achievement_flirt_with_disaster_perf_check : public AchievementCriteriaScr
     public:
         achievement_flirt_with_disaster_perf_check() : AchievementCriteriaScript("achievement_flirt_with_disaster_perf_check") { }
 
-        bool OnCheck(Player* player, Unit* /*target*/)
+        bool OnCheck(Player* player, Unit* /*target*/) OVERRIDE
         {
             if (!player)
                 return false;

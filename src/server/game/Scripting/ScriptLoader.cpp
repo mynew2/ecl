@@ -18,56 +18,12 @@
 #include "ScriptLoader.h"
 #include "AnticheatMgr.h"
 
-// Custom mods: START
-void AddSC_Mod_ArenaWatcher(); // by FrozenSouL (version by Codels)
-void AddSC_Mod_AuctionHouseBot(); // by Codels
-void AddSC_Mod_AutoLearn(); // by Codels
-void AddSC_Mod_BattlegroundHistory(); // by Codels
-void AddSC_Mod_BossHistory(); // by Codels
-void AddSC_Mod_CharacterHistory(); // by Codels
-void AddSC_Mod_CharacterModel(); // by Codels
-void AddSC_Mod_CustomRewardPvP(); // by Codels
-void AddSC_mod_DefaultSpec(); // by Codels
-void AddSC_Mod_DynamicInstance(); // by Codels
-void AddSC_Mod_DynamicRate(); // by Codels
-void AddSC_Mod_ExternalMail(); // by ???
-void AddSC_Mod_Tournaments(); // by Codels
-void AddSC_Mod_GuildDefault(); // by s@m
-void AddSC_Mod_HonorRank(); // by Codels
-void AddSC_Mod_ItemUpgrade(); // by Codels
-void AddSC_Mod_MailHistory(); // by Codels
-void AddSC_Mod_Multikill(); // by Codels
-void AddSC_Mod_SpecialCode(); // by Codels
-void AddSC_npc_buffer(); // by Dimon
-void AddSC_event_npc(); // by Dimon
-void AddSC_Npc_Buff(); // by Dimon
-void AddSC_npc_arena_setup(); // by Dimon
-void AddSC_System_Censure(); // by Dimon
-void AddSC_npcs_mini_boss(); // by Dimon
-void AddSC_npc_morph(); // by Dimon
-void AddSC_buffcommand(); // by Dimon
-void AddSC_boss_pvpchalenge(); // by Dimon
-void AddSC_GuildHouse();
-// Fake Players
-void AddSC_fake_commandscript();
-void AddSC_cs_world_chat();
-void AddSC_npc_enchant();
-void AddSC_icc_rep_rings();
-// Fast Arena Start
-void AddSC_fast_arena_start();
-void AddSC_mr_spell(); // by Dimon
-void AddSC_Mod_LexicsCutter(); // by ???
-// Custom mods: END
-
 //examples
 void AddSC_example_creature();
 void AddSC_example_escort();
 void AddSC_example_gossip_codebox();
 void AddSC_example_misc();
 void AddSC_example_commandscript();
-
-//TeleNPC2
-void AddSC_npc_teleport();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -88,14 +44,11 @@ void AddSC_holiday_spell_scripts();
 
 void AddSC_SmartSCripts();
 
-
-// Custom
-void AddSC_npc_hunterpetvendor();
-
 //Commands
 void AddSC_anticheat_commandscript();
 void AddSC_account_commandscript();
 void AddSC_achievement_commandscript();
+void AddSC_arena_commandscript();
 void AddSC_ban_commandscript();
 void AddSC_bf_commandscript();
 void AddSC_cast_commandscript();
@@ -129,7 +82,6 @@ void AddSC_tele_commandscript();
 void AddSC_ticket_commandscript();
 void AddSC_titles_commandscript();
 void AddSC_wp_commandscript();
-void AddSC_vip_commandscript();
 
 #ifdef SCRIPTS
 //world
@@ -176,19 +128,21 @@ void AddSC_boss_quatermasterzigris();
 void AddSC_boss_pyroguard_emberseer();
 void AddSC_boss_gyth();
 void AddSC_boss_rend_blackhand();
+void AddSC_boss_gizrul_the_slavener();
+void AddSC_boss_urok_doomhowl();
 void AddSC_instance_blackrock_spire();
 void AddSC_boss_razorgore();                 //Blackwing lair
-void AddSC_boss_vael();
+void AddSC_boss_vaelastrasz();
 void AddSC_boss_broodlord();
 void AddSC_boss_firemaw();
 void AddSC_boss_ebonroc();
 void AddSC_boss_flamegor();
 void AddSC_boss_chromaggus();
 void AddSC_boss_nefarian();
-void AddSC_boss_victor_nefarius();
-void AddSC_boss_mr_smite();
+void AddSC_instance_blackwing_lair();
 void AddSC_deadmines();                      //Deadmines
 void AddSC_instance_deadmines();
+void AddSC_boss_mr_smite();
 void AddSC_gnomeregan();                     //Gnomeregan
 void AddSC_operation_gnomeregan();           //Operation Gnomeregan
 void AddSC_instance_gnomeregan();
@@ -346,11 +300,11 @@ void AddSC_boss_epoch_hunter();
 void AddSC_boss_lieutenant_drake();
 void AddSC_instance_old_hillsbrad();
 void AddSC_old_hillsbrad();
-void AddSC_boss_aeonus();                    //CoT The Dark Portal
+void AddSC_boss_aeonus();                    //CoT The Black Morass
 void AddSC_boss_chrono_lord_deja();
 void AddSC_boss_temporus();
-void AddSC_dark_portal();
-void AddSC_instance_dark_portal();
+void AddSC_the_black_morass();
+void AddSC_instance_the_black_morass();
 void AddSC_boss_epoch();                     //CoT Culling Of Stratholme
 void AddSC_boss_infinite_corruptor();
 void AddSC_boss_salramm();
@@ -385,7 +339,7 @@ void AddSC_boss_sartura();
 void AddSC_boss_skeram();
 void AddSC_boss_twinemperors();
 void AddSC_boss_ouro();
-void AddSC_mob_anubisath_sentinel();
+void AddSC_npc_anubisath_sentinel();
 void AddSC_instance_temple_of_ahnqiraj();
 void AddSC_wailing_caverns();                //Wailing caverns
 void AddSC_instance_wailing_caverns();
@@ -501,7 +455,7 @@ void AddSC_boss_mimiron();
 void AddSC_boss_hodir();
 void AddSC_boss_thorim();
 void AddSC_boss_freya();
-void AddSC_boss_yoggsaron();
+void AddSC_boss_yogg_saron();
 void AddSC_boss_algalon_the_observer();
 void AddSC_instance_ulduar();
 void AddSC_boss_keleseth();              //Utgarde Keep
@@ -521,9 +475,9 @@ void AddSC_boss_toravon();
 void AddSC_instance_archavon();
 void AddSC_boss_trollgore();             //Drak'Tharon Keep
 void AddSC_boss_novos();
-void AddSC_boss_dred();
+void AddSC_boss_king_dred();
 void AddSC_boss_tharon_ja();
-void AddSC_instance_drak_tharon();
+void AddSC_instance_drak_tharon_keep();
 void AddSC_boss_cyanigosa();             //Violet Hold
 void AddSC_boss_erekem();
 void AddSC_boss_ichoron();
@@ -546,11 +500,10 @@ void AddSC_instance_halls_of_reflection();   // Halls of Reflection
 void AddSC_halls_of_reflection();
 void AddSC_boss_falric();
 void AddSC_boss_marwyn();
-void AddSC_boss_lich_king_hr();
 void AddSC_boss_lord_marrowgar();       // Icecrown Citadel
 void AddSC_boss_lady_deathwhisper();
-void AddSC_boss_gunship_battle();
 void AddSC_boss_deathbringer_saurfang();
+void AddSC_boss_gunship_battle();
 void AddSC_boss_festergut();
 void AddSC_boss_rotface();
 void AddSC_boss_professor_putricide();
@@ -559,7 +512,6 @@ void AddSC_boss_blood_queen_lana_thel();
 void AddSC_boss_valithria_dreamwalker();
 void AddSC_boss_sindragosa();
 void AddSC_boss_the_lich_king();
-void AddSC_icecrown_citadel_trashmobs();
 void AddSC_icecrown_citadel_teleport();
 void AddSC_instance_icecrown_citadel();
 void AddSC_icecrown_citadel();
@@ -742,6 +694,7 @@ void AddCommandScripts()
     AddSC_anticheat_commandscript();
     AddSC_account_commandscript();
     AddSC_achievement_commandscript();
+    AddSC_arena_commandscript();
     AddSC_ban_commandscript();
     AddSC_bf_commandscript();
     AddSC_cast_commandscript();
@@ -775,7 +728,7 @@ void AddCommandScripts()
     AddSC_ticket_commandscript();
     AddSC_titles_commandscript();
     AddSC_wp_commandscript();
-    AddSC_vip_commandscript();
+    
 }
 
 void AddWorldScripts()
@@ -829,18 +782,20 @@ void AddEasternKingdomsScripts()
     AddSC_boss_pyroguard_emberseer();
     AddSC_boss_gyth();
     AddSC_boss_rend_blackhand();
+    AddSC_boss_gizrul_the_slavener();
+    AddSC_boss_urok_doomhowl();
     AddSC_instance_blackrock_spire();
     AddSC_boss_razorgore();                 //Blackwing lair
-    AddSC_boss_vael();
+    AddSC_boss_vaelastrasz();
     AddSC_boss_broodlord();
     AddSC_boss_firemaw();
     AddSC_boss_ebonroc();
     AddSC_boss_flamegor();
     AddSC_boss_chromaggus();
     AddSC_boss_nefarian();
-    AddSC_boss_victor_nefarius();
-    AddSC_boss_mr_smite();
+    AddSC_instance_blackwing_lair();
     AddSC_deadmines();                      //Deadmines
+    AddSC_boss_mr_smite();
     AddSC_instance_deadmines();
     AddSC_gnomeregan();                     //Gnomeregan
 	AddSC_operation_gnomeregan();           //Operation Gnomeregan
@@ -1003,11 +958,11 @@ void AddKalimdorScripts()
     AddSC_boss_lieutenant_drake();
     AddSC_instance_old_hillsbrad();
     AddSC_old_hillsbrad();
-    AddSC_boss_aeonus();                    //CoT The Dark Portal
+    AddSC_boss_aeonus();                    //CoT The Black Morass
     AddSC_boss_chrono_lord_deja();
     AddSC_boss_temporus();
-    AddSC_dark_portal();
-    AddSC_instance_dark_portal();
+    AddSC_the_black_morass();
+    AddSC_instance_the_black_morass();
     AddSC_boss_epoch();                     //CoT Culling Of Stratholme
     AddSC_boss_infinite_corruptor();
     AddSC_boss_salramm();
@@ -1042,7 +997,7 @@ void AddKalimdorScripts()
     AddSC_boss_skeram();
     AddSC_boss_twinemperors();
     AddSC_boss_ouro();
-    AddSC_mob_anubisath_sentinel();
+    AddSC_npc_anubisath_sentinel();
     AddSC_instance_temple_of_ahnqiraj();
     AddSC_wailing_caverns();                //Wailing caverns
     AddSC_instance_wailing_caverns();
@@ -1254,7 +1209,7 @@ void AddNorthrendScripts()
     AddSC_boss_hodir();
     AddSC_boss_thorim();
     AddSC_boss_freya();
-    AddSC_boss_yoggsaron();
+    AddSC_boss_yogg_saron();
     AddSC_boss_algalon_the_observer();
     AddSC_instance_ulduar();
     AddSC_boss_keleseth();              //Utgarde Keep
@@ -1274,9 +1229,9 @@ void AddNorthrendScripts()
     AddSC_instance_archavon();
     AddSC_boss_trollgore();             //Drak'Tharon Keep
     AddSC_boss_novos();
-    AddSC_boss_dred();
+    AddSC_boss_king_dred();
     AddSC_boss_tharon_ja();
-    AddSC_instance_drak_tharon();
+    AddSC_instance_drak_tharon_keep();
     AddSC_boss_cyanigosa();             //Violet Hold
     AddSC_boss_erekem();
     AddSC_boss_ichoron();
@@ -1299,10 +1254,9 @@ void AddNorthrendScripts()
     AddSC_halls_of_reflection();
     AddSC_boss_falric();
     AddSC_boss_marwyn();
-	AddSC_boss_lich_king_hr();
     AddSC_boss_lord_marrowgar();        // Icecrown Citadel
     AddSC_boss_lady_deathwhisper();
-    AddSC_boss_gunship_battle();
+	AddSC_boss_gunship_battle();
     AddSC_boss_deathbringer_saurfang();
     AddSC_boss_festergut();
     AddSC_boss_rotface();
@@ -1312,7 +1266,6 @@ void AddNorthrendScripts()
     AddSC_boss_valithria_dreamwalker();
     AddSC_boss_sindragosa();
     AddSC_boss_the_lich_king();
-	AddSC_icecrown_citadel_trashmobs();
     AddSC_icecrown_citadel_teleport();
     AddSC_instance_icecrown_citadel();
     AddSC_icecrown_citadel();
@@ -1365,79 +1318,13 @@ void AddBattlegroundScripts()
 
 #ifdef SCRIPTS
 /* This is where custom scripts' loading functions should be declared. */
-//Bots
-void AddSC_druid_bot();
-void AddSC_hunter_bot();
-void AddSC_mage_bot();
-void AddSC_paladin_bot();
-void AddSC_priest_bot();
-void AddSC_rogue_bot();
-void AddSC_shaman_bot();
-void AddSC_warlock_bot();
-void AddSC_warrior_bot();
-void AddSC_script_bot_giver();
-void AddSC_script_bot_commands();
-
-void AddSC_NPC_Transmogrify();
+void AddSC_custom();
 #endif
 
 void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-    AddSC_Mod_ArenaWatcher();
-    AddSC_Mod_AuctionHouseBot();
-    AddSC_Mod_AutoLearn();
-    AddSC_Mod_BattlegroundHistory();
-    AddSC_Mod_BossHistory();
-    AddSC_Mod_CharacterHistory();
-    AddSC_Mod_CharacterModel();
-    AddSC_Mod_CustomRewardPvP();
-    AddSC_mod_DefaultSpec();
-    AddSC_Mod_DynamicInstance();
-    AddSC_Mod_DynamicRate();
-    AddSC_Mod_ExternalMail();
-    AddSC_Mod_Tournaments();
-    AddSC_Mod_GuildDefault();
-    AddSC_Mod_HonorRank();
-    AddSC_Mod_ItemUpgrade();
-    AddSC_Mod_MailHistory();
-    AddSC_Mod_Multikill();
-    AddSC_Mod_SpecialCode();
-	AddSC_npc_hunterpetvendor();
-	AddSC_npc_teleport();
-	AddSC_npc_buffer();
-	AddSC_Npc_Buff();
-    AddSC_event_npc();
-	AddSC_npc_arena_setup();
-	AddSC_buffcommand();
-	AddSC_mr_spell();
-	AddSC_boss_pvpchalenge();
-	AddSC_System_Censure();
-	AddSC_npcs_mini_boss();
-	AddSC_npc_morph();
-	AddSC_npc_enchant();
-	AddSC_icc_rep_rings();
-	//Bots
-    AddSC_druid_bot();
-    AddSC_hunter_bot();
-    AddSC_mage_bot();
-    AddSC_paladin_bot();
-    AddSC_priest_bot();
-    AddSC_rogue_bot();
-    AddSC_shaman_bot();
-    AddSC_warlock_bot();
-    AddSC_warrior_bot();
-    AddSC_script_bot_giver();
-    AddSC_script_bot_commands();
-	// Fake Players
-    AddSC_fake_commandscript();
-	AddSC_GuildHouse();
-	// Fast Arena Start
-    AddSC_fast_arena_start();
-	AddSC_cs_world_chat();
-	AddSC_Mod_LexicsCutter();
-
-    AddSC_NPC_Transmogrify();
+	AddSC_custom();
 #endif
 }

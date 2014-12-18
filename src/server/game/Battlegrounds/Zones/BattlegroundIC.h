@@ -661,6 +661,7 @@ enum Spells
     SPELL_PARACHUTE                        = 66656,
     SPELL_SLOW_FALL                        = 12438,
     SPELL_DESTROYED_VEHICLE_ACHIEVEMENT    = 68357,
+    SPELL_BACK_DOOR_JOB_ACHIEVEMENT        = 68502,
     SPELL_DRIVING_CREDIT_DEMOLISHER        = 68365,
     SPELL_DRIVING_CREDIT_GLAIVE            = 68363,
     SPELL_DRIVING_CREDIT_SIEGE             = 68364,
@@ -950,7 +951,6 @@ class BattlegroundIC : public Battleground
             return uws;
         }
 
-        void RealocatePlayers(ICNodePointType nodeType);
         void UpdateNodeWorldState(ICNodePoint* nodePoint);
         void HandleCapturedNodes(ICNodePoint* nodePoint, bool recapture);
         void HandleContestedNodes(ICNodePoint* nodePoint);
